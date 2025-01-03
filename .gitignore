@@ -30,4 +30,3 @@ instance/
 flask_session/
 
 config.py
-
