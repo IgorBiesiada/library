@@ -16,6 +16,7 @@ class Book(db.Model):
     publisher = db.Column(db.String(100), nullable=False)
     pages = db.Column(db.Integer, nullable=False)
     description = db.Column(db.Text, nullable=False)
+    image = db.Column(db.String(255), nullable=False)
 
     category_id = db.Column(db.Integer, db.ForeignKey('book_category.id'), nullable=False)
     category = db.relationship('BookCategory', backref=db.backref('books', lazy=True))
