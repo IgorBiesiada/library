@@ -10,13 +10,16 @@ def init_routes(app):
 
     @app.route('/add_book', methods=['GET', 'POST'])
     def add_book():
+        categories = BookCategory.query.all()
+
         if request.method == 'POST':
             title = request.form['title']
             author = request.form['author']
             description = request.form['description']
             publisher = request.form['publisher']
             pages = request.form['pages']
-            category = request.form['category']
+            category_id = request.form['category']
+            image = request.form['image']
 
             book = Book(
                 title=title,
@@ -24,13 +27,14 @@ def init_routes(app):
                 description=description,
                 publisher=publisher,
                 pages=pages,
-                category=category)
+                category_id=category_id,
+                image=image
+            )
 
             db.session.add(book)
             db.session.commit()
-            return redirect('/')
 
-        categories = BookCategory.query.all()
+
         return render_template('add_book.html', categories=categories)
 
     @app.route('/book_list')

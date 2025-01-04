@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Add a New Book</h1>
-    <form action="/add-book" method="POST">
+    <form action="/add_book" method="POST" enctype="multipart/form-data">
         <label for="title">Title:</label><br>
         <input type="text" id="title" name="title" required><br><br>
 
@@ -23,10 +23,14 @@
         <label for="pages">Number of Pages:</label><br>
         <input type="number" id="pages" name="pages" min="1" required><br><br>
 
+        <label for="image">Image:</label><br>
+        <input type="text" id="image" name="image" min="1" required><br><br>
+
         <label for="category">Category:</label><br>
         <select id="category" name="category" required>
-            <option value="">Select a category</option>
-            <option value="Horror">Fiction</option>
+            {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
         </select><br><br>
 
         <button type="submit">Add Book</button>
