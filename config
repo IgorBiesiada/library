@@ -7,3 +7,8 @@ class Config:
     )
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    UPLOAD_FOLDER = 'uploads'
+    ALLOWED_EXTENSIONS = ('png', 'jpg', 'jpeg', 'gif')
+    if not os.path.exists(UPLOAD_FOLDER):
+        os.mkdir(UPLOAD_FOLDER)

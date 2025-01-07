@@ -1,7 +1,14 @@
-from flask import render_template, request, redirect
+import os
+
+from flask import render_template, request
 from extensions import db
 from models import Book, BookCategory
+from config import Config
+from werkzeug.utils import secure_filename
 
+
+def allowed_file(filename):
+        return '.' in filename and filename.rsplit('.', 1)[1].lower() in Config.ALLOWED_EXTENSIONS
 
 def init_routes(app):
     @app.route('/')
@@ -19,7 +26,18 @@ def init_routes(app):
             publisher = request.form['publisher']
             pages = request.form['pages']
             category_id = request.form['category']
-            image = request.form['image']
+
+
+            if 'image_path' in request.files:
+                image = request.files['image_path']
+                if image and allowed_file(image.filename):
+                    filename = secure_filename(image.filename)
+                    image_path = os.path.join(Config.UPLOAD_FOLDER, filename)
+                    image.save(image_path)
+                else:
+                    image_path = None
+            else:
+                image_path = None
 
             book = Book(
                 title=title,
@@ -28,7 +46,7 @@ def init_routes(app):
                 publisher=publisher,
                 pages=pages,
                 category_id=category_id,
-                image=image
+                image_path=image_path
             )
 
             db.session.add(book)
