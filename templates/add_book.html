@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Book</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    {% include 'nav.html' %}
+
     <h1>Add a New Book</h1>
     <form action="/add_book" method="POST" enctype="multipart/form-data">
         <label for="title">Title:</label><br>

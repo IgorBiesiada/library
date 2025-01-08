@@ -55,7 +55,12 @@ def init_routes(app):
 
         return render_template('add_book.html', categories=categories)
 
-    @app.route('/book_list')
+    @app.route('/book_list', methods=['GET'])
     def get_book_list():
-        books = Book.query.all()
-        return render_template('book_list.html', books=books)
+        book = Book.query.with_entities(Book.title, Book.author, Book.image_path).all()
+        return render_template('book_list.html', book=book)
+
+    @app.route(f'/book/<int:book_id>', methods=['GET'])
+    def get_book(book_id):
+        book = Book.query.get_or_404(book_id)
+        return render_template('book_details.html', book=book)
