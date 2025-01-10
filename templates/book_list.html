@@ -2,10 +2,9 @@
 {% include 'nav.html' %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 <h1>Book List</h1>
-    <div class="book-container">
+
      {% for _ in book %}
         <div class="book-card">
-            <img src="uploads/book1.jpg" alt="Book Image">
             <div class="book-info">
                 <div class="book-title">{{ book.title }}</div>
                 <div class="book-author">{{ book.author }}</div>

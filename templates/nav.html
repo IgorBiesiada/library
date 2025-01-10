@@ -1,20 +1,8 @@
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-
 </head>
-
-
-<ul class="nav nav-pills">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="#">Active</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="{{ '/add_book' }}">add book2</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled" href="add_book.html" tabindex="-1" aria-disabled="true">add book</a>
-  </li>
-</ul>
+<div class="nav-bar">
+    <div class="nav-button"><a href="{{ '/' }}">Home</a></div>
+    <div class="nav-button"><a href="{{ '/add_book' }}">Add book</a></div>
+    <div class="nav-button"><a href="{{ '/book_list' }}">Book list</a></div>
+</div>
